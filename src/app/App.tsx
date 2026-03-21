@@ -18,7 +18,7 @@ import { RequirementsList } from "@/app/components/RequirementsList";
 import { TasksList } from "@/app/components/TasksList";
 import { hasProcessAccess } from "@/app/config/rolesConfig";
 import { Shield, User } from "lucide-react";
-import logoImage from "figma:asset/4f0d1475fb5c3a62e9dcf3b6d3e56fe97bc2ad62.png";
+import logoImage from "@/assets/4f0d1475fb5c3a62e9dcf3b6d3e56fe97bc2ad62.png";
 
 interface SystemConfig {
   clientName: string;

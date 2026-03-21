@@ -3,7 +3,7 @@ import { Badge } from "@/app/components/ui/badge";
 import { Button } from "@/app/components/ui/button";
 import { Shield, Users, ArrowRight, ChevronLeft } from "lucide-react";
 import { motion } from "motion/react";
-import logoImage from "figma:asset/4f0d1475fb5c3a62e9dcf3b6d3e56fe97bc2ad62.png";
+import logoImage from "@/assets/4f0d1475fb5c3a62e9dcf3b6d3e56fe97bc2ad62.png";
 
 interface UserTypeSelectionProps {
   onUserTypeSelect: (userType: "admin" | "roles") => void;

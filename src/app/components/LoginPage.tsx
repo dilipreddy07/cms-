@@ -6,7 +6,7 @@ import { Label } from "@/app/components/ui/label";
 import { Badge } from "@/app/components/ui/badge";
 import { Shield, Lock, Eye, EyeOff, AlertCircle } from "lucide-react";
 import { motion } from "motion/react";
-import logoImage from "figma:asset/4f0d1475fb5c3a62e9dcf3b6d3e56fe97bc2ad62.png";
+import logoImage from "@/assets/4f0d1475fb5c3a62e9dcf3b6d3e56fe97bc2ad62.png";
 import { getDepartmentUsers, getDepartmentConfig } from "@/app/config/departmentConfig";
 
 interface DemoCredential {

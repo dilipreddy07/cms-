@@ -4,7 +4,7 @@ import { Badge } from "@/app/components/ui/badge";
 import { Shield, ArrowRight, CheckCircle, FileText, Settings, BarChart3, Lock, Users, Globe } from "lucide-react";
 import { motion } from "motion/react";
 import { ImageWithFallback } from "@/app/components/figma/ImageWithFallback";
-import logoImage from "figma:asset/4f0d1475fb5c3a62e9dcf3b6d3e56fe97bc2ad62.png";
+import logoImage from "@/assets/4f0d1475fb5c3a62e9dcf3b6d3e56fe97bc2ad62.png";
 
 interface LandingPageProps {
   onGetStarted: () => void;
