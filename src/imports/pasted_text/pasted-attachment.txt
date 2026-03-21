@@ -1,0 +1,172 @@
+Design the Standard Module under
+Process Head → Definition → Standard (QMS) where:
+
+Procedures = Base
+
+Policies + Guidelines = Combined Module
+
+Followed by:
+
+Templates
+
+Checklists
+
+✅ 1. Core Flow
+Procedure (Base)
+   ↓
+Policies & Guidelines (Combined)
+   ↓
+Templates
+   ↓
+Checklists
+🧩 2. Procedures Module (Primary Table)
+Table Structure
+ID | Title | Description | Procedure | Department | Version | Status | Last Updated | Actions
+Procedure Column (Document Handling)
+
+👁 View (DOC/PDF)
+
+⬆️ Upload
+
+🗑 Delete (document only)
+
+Department Dropdown
+Quality
+Human Resources (HR)
+Purchase
+Administration
+Product Development
+Information Technology (IT)
+Finance / Accounts
+Operations
+Sales & Marketing
+Customer Support / Service
+Actions
+
+✏️ Edit
+
+🗑 Delete
+
+⬇️ Download PDF
+
+⬇️ Download DOC
+
+🔗 3. Policies & Guidelines (Combined Module)
+✅ Key Concept:
+
+Policies and Guidelines are created together in one module
+
+Both depend on selected Procedure
+
+Table Structure
+ID | Title | Type (Policy/Guideline) | Description | Mapped Procedure | Version | Status | Actions
+Fields
+
+Title
+
+Type:
+
+Policy
+
+Guideline
+
+Description
+
+Mapped Procedure (Required)
+
+Version
+
+Status
+
+Rules
+
+Must select Procedure first
+
+Cannot create without mapping
+
+Both Policy & Guideline stored in same table
+
+📑 4. Templates Module
+Behavior
+
+Upload supporting documents
+
+Fields
+
+Template ID
+
+Title
+
+Mapped Procedure
+
+File Upload (DOC/PDF)
+
+Version
+
+✅ 5. Checklists Module
+Behavior
+
+Step-by-step execution list
+
+Fields
+
+Checklist ID
+
+Title
+
+Mapped Procedure
+
+Checklist Items
+
+Status
+
+⚙️ 6. Data Flow
+Step 1: Create Procedure
+Step 2: Upload Procedure Document
+Step 3: Select Procedure
+Step 4: Create Policies & Guidelines
+Step 5: Upload Templates
+Step 6: Create Checklist
+🎯 7. UI Behavior
+
+When user selects a Procedure:
+
+Show Tabs:
+   - Policies & Guidelines
+   - Templates
+   - Checklists
+
+Only show data related to selected procedure
+
+🔒 8. Validation Rules
+
+Policies/Guidelines must have:
+
+Mapped Procedure
+
+Templates must have:
+
+File + Mapping
+
+Checklists must have:
+
+Procedure mapping
+
+🧠 9. Expected Outcome
+
+Simplified structure (no duplicate modules)
+
+Clean UI
+
+Logical dependency
+
+Easy data management
+
+✅ FINAL RESULT
+Procedure
+   ↓
+Policies + Guidelines (combined)
+   ↓
+Templates
+   ↓
+Checklists
