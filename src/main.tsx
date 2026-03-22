@@ -28,8 +28,13 @@ class ErrorBoundary extends React.Component<
   }
 }
 
+console.log("main.tsx loaded, rendering app...");
+
 createRoot(document.getElementById("root")!).render(
   <ErrorBoundary>
-    <App />
+    <div style={{ border: "3px solid red", padding: 20, margin: 20 }}>
+      <p style={{ fontSize: 24, color: "black" }}>DEBUG: If you see this, React is rendering.</p>
+      <App />
+    </div>
   </ErrorBoundary>
 );
