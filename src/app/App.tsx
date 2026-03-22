@@ -12,7 +12,6 @@ import { TopManagementDashboard } from "@/app/components/TopManagementDashboard"
 import { TeamMemberDashboard } from "@/app/components/TeamMemberDashboard";
 import { ComplianceDashboard } from "@/app/components/ComplianceDashboard";
 import { GenericRoleDashboard } from "@/app/components/GenericRoleDashboard";
-import { HRExecutiveDashboard } from "@/app/components/HRExecutiveDashboard";
 import { FrameworksList } from "@/app/components/FrameworksList";
 import { RequirementsList } from "@/app/components/RequirementsList";
 import { TasksList } from "@/app/components/TasksList";
@@ -321,14 +320,6 @@ export default function App() {
 
   // Render role-specific dashboard
   const renderRoleDashboard = () => {
-    // Special case: HR Executive in Implementation phase gets dedicated dashboard
-    if (
-      selectedRole === "hr-executive" &&
-      selectedProcess === "implementation"
-    ) {
-      return <HRExecutiveDashboard />;
-    }
-
     switch (selectedRole) {
       case "system-admin":
         return (
@@ -379,6 +370,7 @@ export default function App() {
           />
         );
       // All other roles use the generic dashboard
+      case "hr-executive":
       case "process-engineer":
       case "project-head":
       case "project-engineer":
