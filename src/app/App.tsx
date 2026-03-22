@@ -14,7 +14,7 @@ import { LandingPage } from "@/app/components/LandingPage";
 import { LoginPage } from "@/app/components/LoginPage";
 import { ProcessSelection } from "@/app/components/ProcessSelection";
 import { SystemAdminDashboard } from "@/app/components/SystemAdminDashboard";
-import { ProcessHeadDashboard } from "@/app/components/ProcessHeadDashboard";
+import ProcessHeadDashboard from "@/app/components/ProcessHeadDashboard";
 import { ProjectManagerDashboard } from "@/app/components/ProjectManagerDashboard";
 import { TopManagementDashboard } from "@/app/components/TopManagementDashboard";
 import { TeamMemberDashboard } from "@/app/components/TeamMemberDashboard";

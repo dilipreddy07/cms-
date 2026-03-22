@@ -564,7 +564,7 @@ function UnifiedDashboard({ onNavigate }: { onNavigate: (page: ProcessPage) => v
 }
 
 // ─── Exported wrapper ─────────────────────────────────────────────────────────
-export function ProcessHeadDashboard(props: ProcessHeadDashboardProps) {
+export default function ProcessHeadDashboard(props: ProcessHeadDashboardProps) {
   return (
     <ProjectDataProvider>
       <ProcessHeadDashboardContent {...props} />
