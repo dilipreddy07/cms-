@@ -1,7 +1,7 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/app/components/ui/card";
 import { Button } from "@/app/components/ui/button";
 import { Badge } from "@/app/components/ui/badge";
-import { Shield, Download, ExternalLink } from "lucide-react";
+import { Shield, Download, ExternalLink, FileText } from "lucide-react";
 
 interface SelectedStandardsViewProps {
   complianceStandards: string[];
