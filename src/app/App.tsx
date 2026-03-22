@@ -1,5 +1,13 @@
 import { useState } from "react";
 import { Button } from "@/app/components/ui/button";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/app/components/ui/dropdown-menu";
 import { InitialQuestionnaire } from "@/app/components/InitialQuestionnaire";
 import { ConfigurationSummary } from "@/app/components/ConfigurationSummary";
 import { LandingPage } from "@/app/components/LandingPage";
@@ -10,13 +18,9 @@ import { ProcessHeadDashboard } from "@/app/components/ProcessHeadDashboard";
 import { ProjectManagerDashboard } from "@/app/components/ProjectManagerDashboard";
 import { TopManagementDashboard } from "@/app/components/TopManagementDashboard";
 import { TeamMemberDashboard } from "@/app/components/TeamMemberDashboard";
-import { ComplianceDashboard } from "@/app/components/ComplianceDashboard";
 import { GenericRoleDashboard } from "@/app/components/GenericRoleDashboard";
-import { FrameworksList } from "@/app/components/FrameworksList";
-import { RequirementsList } from "@/app/components/RequirementsList";
-import { TasksList } from "@/app/components/TasksList";
 import { hasProcessAccess } from "@/app/config/rolesConfig";
-import { Shield, User } from "lucide-react";
+import { Shield, User, LogOut } from "lucide-react";
 import logoImage from "@/assets/4f0d1475fb5c3a62e9dcf3b6d3e56fe97bc2ad62.png";
 
 interface SystemConfig {
@@ -430,34 +434,61 @@ export default function App() {
             </div>
           </div>
           <div className="flex items-center gap-3">
-            <div className="flex items-center gap-3 px-4 py-2">
-              <div className="text-right">
-                <p className="text-sm font-semibold text-gray-900">
-                  {userName || "Process Head"}
-                </p>
-                <p className="text-xs text-muted-foreground">
-                  {selectedRole ? selectedRole.split('-').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ') : "Process Head"}
-                </p>
-              </div>
-              <div className="h-10 w-10 rounded-full bg-primary/10 flex items-center justify-center">
-                <span className="text-sm font-bold text-primary">
-                  {userName
-                    ? userName
-                        .split(" ")
-                        .map((n) => n[0])
-                        .join("")
-                        .toUpperCase()
-                        .slice(0, 2)
-                    : "PH"}
-                </span>
-              </div>
-            </div>
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <Button
+                  variant="ghost"
+                  className="flex items-center gap-3 px-4 py-2 rounded-full hover:bg-gray-50 focus:ring-2 focus:ring-purple-500 focus:ring-offset-2"
+                >
+                  <div className="text-right">
+                    <p className="text-sm font-semibold text-gray-900">
+                      {userName || "Admin User"}
+                    </p>
+                    <p className="text-xs text-muted-foreground">
+                      {userEmail || "admin@company.com"}
+                    </p>
+                  </div>
+                  <div className="h-12 w-12 rounded-full bg-primary/10 flex items-center justify-center">
+                    <span className="text-sm font-bold text-primary">
+                      {userName
+                        ? userName
+                            .split(" ")
+                            .map((n) => n[0])
+                            .join("")
+                            .toUpperCase()
+                            .slice(0, 2)
+                        : "AU"}
+                    </span>
+                  </div>
+                </Button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent
+                align="end"
+                className="w-56 bg-white shadow-lg border border-gray-200"
+              >
+                <DropdownMenuLabel className="font-semibold">
+                  My Account
+                </DropdownMenuLabel>
+                <DropdownMenuSeparator />
+                <DropdownMenuItem className="cursor-pointer hover:bg-gray-100 focus:bg-gray-100">
+                  <User className="mr-2 h-4 w-4 text-gray-600" />
+                  <span>Profile</span>
+                </DropdownMenuItem>
+                <DropdownMenuItem
+                  onClick={handleLogout}
+                  className="text-red-600 cursor-pointer hover:bg-red-50 focus:bg-red-50 font-medium"
+                >
+                  <LogOut className="mr-2 h-4 w-4" />
+                  <span>Logout</span>
+                </DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
           </div>
         </div>
       </header>
 
       {/* Main Content */}
-      <main>
+      <main className="container mx-auto px-6 py-6">
         {renderRoleDashboard()}
       </main>
     </div>
