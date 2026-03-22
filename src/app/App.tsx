@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigate, useLocation } from "react-router-dom";
 import { Button } from "@/app/components/ui/button";
 import {
   DropdownMenu,
@@ -14,14 +15,17 @@ import { LandingPage } from "@/app/components/LandingPage";
 import { LoginPage } from "@/app/components/LoginPage";
 import { ProcessSelection } from "@/app/components/ProcessSelection";
 import { SystemAdminDashboard } from "@/app/components/SystemAdminDashboard";
-import ProcessHeadDashboard from "@/app/components/ProcessHeadDashboard";
 import { ProjectManagerDashboard } from "@/app/components/ProjectManagerDashboard";
 import { TopManagementDashboard } from "@/app/components/TopManagementDashboard";
 import { TeamMemberDashboard } from "@/app/components/TeamMemberDashboard";
 import { GenericRoleDashboard } from "@/app/components/GenericRoleDashboard";
+import AppRoutes from "@/app/routes/AppRoutes";
 import { hasProcessAccess } from "@/app/config/rolesConfig";
 import { Shield, User, LogOut } from "lucide-react";
 import logoImage from "@/assets/4f0d1475fb5c3a62e9dcf3b6d3e56fe97bc2ad62.png";
+
+// Roles that use the new phase-based routing
+const ROUTED_ROLES = ["process-head", "hr-head", "hr-executive"];
 
 interface SystemConfig {
   clientName: string;
@@ -33,6 +37,8 @@ interface SystemConfig {
 }
 
 export default function App() {
+  const navigate = useNavigate();
+  const location = useLocation();
   const [systemConfig, setSystemConfig] =
     useState<SystemConfig | null>(null);
   const [showConfigSummary, setShowConfigSummary] =
@@ -63,6 +69,10 @@ export default function App() {
 
   const handleProcessSelect = (processId: string) => {
     setSelectedProcess(processId);
+    // For routed roles, navigate to the phase-based route
+    if (selectedRole && ROUTED_ROLES.includes(selectedRole)) {
+      navigate(`/${selectedRole}/${processId}`);
+    }
   };
 
   const handleLogin = (
@@ -322,7 +332,18 @@ export default function App() {
     );
   }
 
-  // Render role-specific dashboard
+  // Check if current path is a routed phase path
+  const isOnRoutedPath = ROUTED_ROLES.some((role) =>
+    location.pathname.startsWith(`/${role}/`)
+  );
+
+  // For routed roles (process-head, hr-head, hr-executive),
+  // render AppRoutes which handles its own layout via PhaseLayout
+  if (isOnRoutedPath && selectedRole && ROUTED_ROLES.includes(selectedRole)) {
+    return <AppRoutes />;
+  }
+
+  // Render role-specific dashboard for non-routed roles
   const renderRoleDashboard = () => {
     switch (selectedRole) {
       case "system-admin":
@@ -330,21 +351,6 @@ export default function App() {
           <SystemAdminDashboard
             department={department}
             process={selectedProcess!}
-            onLogout={handleExitRole}
-          />
-        );
-      case "process-head":
-      case "hr-head":
-        return (
-          <ProcessHeadDashboard
-            department={department}
-            phase={
-              selectedProcess! as
-                | "definition"
-                | "implementation"
-                | "validation"
-            }
-            systemConfig={systemConfig}
             onLogout={handleExitRole}
           />
         );
@@ -370,34 +376,6 @@ export default function App() {
           <TeamMemberDashboard
             department={department}
             process={selectedProcess!}
-            onLogout={handleExitRole}
-          />
-        );
-      // All other roles use the generic dashboard
-      case "hr-executive":
-      case "process-engineer":
-      case "project-head":
-      case "project-engineer":
-      case "design-head":
-      case "design-engineer":
-      case "development-engineer":
-      case "developer":
-      case "software-engineer":
-      case "testing-head":
-      case "testing-engineer":
-      case "it-head":
-      case "it-engineer":
-      case "training-head":
-      case "training-executive":
-      case "admin-head":
-      case "admin-executive":
-      case "purchase-head":
-      case "purchase-executive":
-        return (
-          <GenericRoleDashboard
-            department={department}
-            process={selectedProcess!}
-            roleId={selectedRole}
             onLogout={handleExitRole}
           />
         );
